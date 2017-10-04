@@ -1,3 +1,6 @@
+// init db
+require( './db' );
+
 let express = require('express'),
   path = require('path'),
   favicon = require('serve-favicon'),
@@ -5,18 +8,13 @@ let express = require('express'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser');
 
-// not sure which DB to use. hmmmm
-// let mongo = require('mongodb');
-// let monk = require('monk');
-// let db = monk('localhost:27017/nodetest2');
-
+let app = express();
 let routes = require('./routes/index'),
   charts = require('./routes./charts'),
   stocks = require('./routes/stocks');
 
-let app = express();
+app.set('port', process.env.PORT || 3001);
 
-// views
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
